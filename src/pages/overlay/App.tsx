@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback, useReducer } from 'react'
 import HideExtensionModal from './components/HideExtensionModal/HideExtensionModal'
 import BingoGame from './components/BingoGame/BingoGame'
-import Tomato from './components/Tomato/Tomato'
-import { Tomato as TomatoType } from './components/Tomato/types'
 import BlurBox from './components/BlurBox/BlurBox'
 
 import useChatCommand from './chatCommand'
@@ -14,15 +12,10 @@ import { actions, initialState, reducer } from './app.reducer'
 export default function App(){
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const [command, tomatoTimer, nullifyCommand] = useChatCommand()
-  const sleepTimer = React.useRef<NodeJS.Timeout | undefined>(undefined)
-
   // Handle commmands
   useEffect(() => {
     if (command === commands.showBingoGame) {//show the bingo game for 2 seconds
       showBingoGame(2)
-    }else if(command === commands.throwTomato) {//throw a tomato
-      throwTomato()
     }
     nullifyCommand()
   }, [command])
@@ -59,36 +52,6 @@ export default function App(){
     }, seconds*1000)
   }, [state.isExtensionHidden])
 
-  const throwTomato = useCallback(() => {
-    if(state.isExtensionHidden) return
-
-    const tomato: TomatoType = {
-      x: Math.random()*100,
-      y: Math.random()*100,
-      rotate: Math.random()*360,
-      splatter: false,
-      fadeAway: false
-    }
-
-    dispatch({type: actions.THROW_TOMATO, payload: tomato})
-
-    setTimeout(() => {
-      dispatch({type: actions.SPLATTER_TOMATO, payload: tomato})
-    }, 500)
-  }, [state.isExtensionHidden])
-
-  // Fade away all tomatoes when the timer is 0
-  useEffect(() => {
-    if(state.isExtensionHidden) return
-
-    if(tomatoTimer === 0){
-      dispatch({type: actions.FADE_AWAY_TOMATOES})
-      setTimeout(() => {
-        dispatch({type: actions.REMOVE_TOMATOES})
-      }, 500)
-    }
-  }, [tomatoTimer, state.isExtensionHidden])
-
   return (
     <div
       className={`${styles.app} ${state.isCursorVisible? undefined : styles.cursorHidden}`}
@@ -102,19 +65,13 @@ export default function App(){
         hideExtension={()=>dispatch({type: actions.HIDE_EXTENSION})}
         cancel={() => dispatch({type: actions.CANCEL_HIDE_EXTENSION})}
       />
-      <Tomato tomatoes={state.tomatoes}/>
       <BingoGame
         isBingoTabVisible={state.isBingoTabVisible}
         isBingoGameOpen={state.isBingoGameOpen}
         openBingoGame={() => dispatch({type: actions.OPEN_BINGO_GAME})}
         closeBingoGame={() => dispatch({type: actions.CLOSE_BINGO_GAME})}
       />
-      <div
-        className={styles.countDownTimer}
-        style={{display: state.isExtensionHidden || tomatoTimer === 0 ? 'none' : undefined}}
-      >
-        {tomatoTimer}
+      
       </div>
-    </div>
   )
 }
