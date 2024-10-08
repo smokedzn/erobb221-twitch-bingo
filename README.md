@@ -3,16 +3,16 @@
 <div align="center">
   <img src="https://github.com/abdullahmorrison/erobb221-twitch-extension/assets/49528805/26d4a302-4362-4534-9e8a-a962ab10b047" width=150/>
 </div>
-<p align="center">The official Twitch extension for erobb221</p>
+<p align="center">Bingo Extension for Twitch | erobb221 Version | Oct 2024 Updated (in progress)</p>
 
 # Demo
-### Throwing Tomatoes
-If a moderator or I type `!startthrowing` in chat, a 30 second timer pops up in the bottom right corner of the overlay. This allows anyone in chat to throw virtual tomatoes at the screen by typing [`TomatoTime`](https://7tv.app/emotes/612cd2d1f1485338b6989148) in chat.
 
-https://github.com/abdullahmorrison/erobb221-twitch-extension/assets/49528805/84815f35-cce5-4be9-a827-95418ca9dd77
+~~Throwing Tomatoes~~
+
+~~If a moderator or I type `!startthrowing` in chat, a 30 second timer pops up in the bottom right corner of the overlay. This allows anyone in chat to throw virtual tomatoes at the screen by typing TomatoTime in chat.~~
 
 ### Bingo Game
-Hovering your cursor over the screen pops up a tab on the left side of the screen. Clicking the tab will pop up a bingo board for users to play bingo about erobb221.
+Hovering your cursor over the screen pops up a tab on the left side of the screen. Clicking the tab will pop up a bingo board for users to play bingo about erobb221. (Updated Entries and bigger bingo Grid Sizes will be done until November 24.
 
 https://github.com/abdullahmorrison/erobb221-twitch-extension/assets/49528805/68f2c3d0-e79c-4bf3-a457-03ca062434a8
 
